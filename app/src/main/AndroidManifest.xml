@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ToolDescriptionActivity"></activity>
+        <activity android:name=".SecondaryDescriptionActivity"></activity>
+        <activity android:name=".ToolDescriptionActivity" />
         <activity android:name=".MainDescriptionActivity" />
         <activity android:name=".CreatureSearchActivity" />
         <activity android:name=".VacationSearchActivity" />

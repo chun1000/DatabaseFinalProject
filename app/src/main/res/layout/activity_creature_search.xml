@@ -17,12 +17,14 @@
         >
 
         <EditText
+            android:id="@+id/activity_creature_search_editText_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="15"
             />
 
         <ImageButton
+            android:id="@+id/activity_creature_search_imageButton_search"
             android:layout_width="wrap_content"
             android:layout_height="50sp"
             android:layout_weight="1"
@@ -40,6 +42,7 @@
         >
 
         <Button
+            android:id="@+id/activity_creature_search_button_plant"
             android:text="식물 검색하기"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,6 +52,7 @@
             />
 
         <Button
+            android:id="@+id/activity_creature_search_button_animal"
             android:text="동물 검색하기"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,6 +72,7 @@
         >
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_creature_search_recyclerView_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
