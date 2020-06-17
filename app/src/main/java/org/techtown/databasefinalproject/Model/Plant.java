@@ -7,6 +7,7 @@ public class Plant implements Serializable {
     private String description= "";
     private String species= "";
     private String province= "";
+    private String city ="";
     private String town= "";
 
     public String getName() {
@@ -57,5 +58,5 @@ public class Plant implements Serializable {
         this.city = city;
     }
 
-    private String city;
+
 }

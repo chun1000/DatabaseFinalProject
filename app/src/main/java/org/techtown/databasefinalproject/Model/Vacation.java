@@ -1,7 +1,14 @@
 package org.techtown.databasefinalproject.Model;
 
-public class Vacation {
+import java.io.Serializable;
+
+public class Vacation implements Serializable {
     private String spotName;
+    private String phoneNumber;
+    private String description;
+    private String province;
+    private String town;
+    private String city;
 
     public String getSpotName() {
         return spotName;
@@ -51,9 +58,5 @@ public class Vacation {
         this.city = city;
     }
 
-    private String phoneNumber;
-    private String description;
-    private String province;
-    private String town;
-    private String city;
+
 }

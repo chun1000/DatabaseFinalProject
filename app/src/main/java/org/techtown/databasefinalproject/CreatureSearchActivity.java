@@ -1,8 +1,6 @@
 package org.techtown.databasefinalproject;
 
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import org.techtown.databasefinalproject.Adapter.PlantAdapter;
 import org.techtown.databasefinalproject.Model.Plant;
 
 import java.util.ArrayList;

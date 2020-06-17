@@ -1,4 +1,4 @@
-package org.techtown.databasefinalproject;
+package org.techtown.databasefinalproject.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,27 +11,31 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.techtown.databasefinalproject.Model.Plant;
+import org.techtown.databasefinalproject.Model.Tool;
+import org.techtown.databasefinalproject.R;
+import org.techtown.databasefinalproject.SecondaryDescriptionActivity;
 
 import java.util.ArrayList;
 
-public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> {
-    private ArrayList<Plant> data = null;
+public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
+    private ArrayList<Tool> data = null;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView name;
-        TextView location;
+        //레이아웃들 선언부.
 
         ViewHolder(View item) {
             super(item);
 
+            /*
             imageView = item.findViewById(R.id.plant_item_imageView_image);
             name = item.findViewById(R.id.plant_item_textView_name);
             location = item.findViewById(R.id.plant_item_textView_location);
 
+            */
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    /*
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
                         Plant plant = data.get(pos);
@@ -40,13 +44,16 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
                         Intent intent = new Intent(v.getContext(), SecondaryDescriptionActivity.class);
                         intent.putExtra("Model", plant);
                         v.getContext().startActivity(intent);
+
+
                     }
+                    */
                 }
             });
         }
     }
 
-    PlantAdapter(ArrayList<Plant> list) {
+    ToolAdapter(ArrayList<Tool> list) {
         data = list;
     }
 
@@ -55,17 +62,18 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        /*
         View view = inflater.inflate(R.layout.plant_item, viewGroup, false);
-        PlantAdapter.ViewHolder vh = new PlantAdapter.ViewHolder(view);
 
+        */
+        ToolAdapter.ViewHolder vh = null; //= new ToolAdapter.ViewHolder(view);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.name.setText(data.get(i).getName());
-        viewHolder.location.setText(data.get(i).getProvince() + data.get(i).getCity() + data.get(i).getTown());
+       // viewHolder.name.setText(data.get(i).getName());
+       // viewHolder.location.setText(data.get(i).getProvince() + data.get(i).getCity() + data.get(i).getTown());
         //viewHolder.imageView.setImageURI();
     }
 

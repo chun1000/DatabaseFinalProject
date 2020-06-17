@@ -1,7 +1,14 @@
 package org.techtown.databasefinalproject.Model;
 
-public class Animal {
+import java.io.Serializable;
+
+public class Animal implements Serializable {
     private String name;
+    private String description;
+    private String species;
+    private String province;
+    private String town;
+    private String city;
 
     public String getName() {
         return name;
@@ -51,9 +58,5 @@ public class Animal {
         this.city = city;
     }
 
-    private String description;
-    private String species;
-    private String province;
-    private String town;
-    private String city;
+
 }
