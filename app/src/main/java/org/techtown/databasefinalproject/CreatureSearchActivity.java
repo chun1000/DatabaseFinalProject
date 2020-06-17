@@ -5,11 +5,16 @@ import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import org.techtown.databasefinalproject.Model.Plant;
+
+import java.util.ArrayList;
 
 public class CreatureSearchActivity extends AppCompatActivity {
 
@@ -26,6 +31,16 @@ public class CreatureSearchActivity extends AppCompatActivity {
         btnSearch = findViewById(R.id.activity_creature_search_imageButton_search);
         txtSearch = findViewById(R.id.activity_creature_search_editText_search);
         recyclerView = findViewById(R.id.activity_creature_search_recyclerView_main);
+
+        ArrayList<Plant> plants = new ArrayList<>();
+        plants.add(new Plant());
+        plants.get(0).setName("나쁜 식물");
+        plants.add(new Plant());
+        plants.get(1).setName("나쁜 식물");
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        PlantAdapter adapter = new PlantAdapter(plants);
+        recyclerView.setAdapter(adapter);
+
     }
 
 
