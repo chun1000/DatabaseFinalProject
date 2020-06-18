@@ -48,10 +48,10 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
         Object o = intent.getSerializableExtra("object");
 
         if(o instanceof Plant || o instanceof  Animal) {
-            initializeLayoutCreature();
+            initializeLayoutCreature(o);
             layoutMode = 0;
         } else if(o instanceof Vacation) {
-            initializeLayoutVacation();
+            initializeLayoutVacation(o);
             layoutMode = 1;
         } else {
             Log.d("app", "Error occur");
@@ -114,16 +114,27 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
 
 
 
-    private void initializeLayoutCreature() {
+    private void initializeLayoutCreature(Object o) {
         creatureFragment = new CreatureFragment();
         toolListFragment = new ToolListFragment();
         vacationListFragment = new VacationListFragment();
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, creatureFragment ).commit();
+
+        Bundle bundle = new Bundle();
+
+        if(o instanceof  Plant) {
+            bundle.putSerializable("object", (Plant)o);
+        } else {
+            bundle.putSerializable("object", (Animal)o);
+        }
+
+        creatureFragment.setArguments(bundle);
+
     }
 
-    private void initializeLayoutVacation() {
+    private void initializeLayoutVacation(Object o) {
         vacationFragment = new VacationFragment();
         toolListFragment = new ToolListFragment();
         creatureListFragment = new CreatureListFragment();

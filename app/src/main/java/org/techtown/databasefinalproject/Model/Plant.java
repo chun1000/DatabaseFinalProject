@@ -58,5 +58,9 @@ public class Plant implements Serializable {
         this.city = city;
     }
 
+    public String getLocation() {
+        return province + " " + city + " " + town;
+    }
+
 
 }
