@@ -40,7 +40,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
                         //아이템을 얻는 부분.
 
                         Intent intent = new Intent(v.getContext(), SecondaryDescriptionActivity.class);
-                        intent.putExtra("Model", plant);
+                        intent.putExtra("object", plant);
                         v.getContext().startActivity(intent);
                     }
                 }

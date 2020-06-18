@@ -41,7 +41,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
                         //아이템을 얻는 부분.
 
                         Intent intent = new Intent(v.getContext(), SecondaryDescriptionActivity.class);
-                        intent.putExtra("Model", animal);
+                        intent.putExtra("object", animal);
                         v.getContext().startActivity(intent);
                     }
                 }
