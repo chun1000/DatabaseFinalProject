@@ -21,6 +21,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
                 android:text="생물종 채집 도구 리스트"
+                android:layout_margin="2sp"
                 />
 
             <View
@@ -39,7 +40,7 @@
             >
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_tool_list_recyclerView_1"
+                android:id="@+id/fragment_tool_list_recyclerView_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

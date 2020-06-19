@@ -11,7 +11,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SecondaryDescriptionActivity"></activity>
         <activity android:name=".ToolDescriptionActivity" />
-        <activity android:name=".MainDescriptionActivity" />
         <activity android:name=".CreatureSearchActivity" />
         <activity android:name=".VacationSearchActivity" />
         <activity android:name=".MainActivity">

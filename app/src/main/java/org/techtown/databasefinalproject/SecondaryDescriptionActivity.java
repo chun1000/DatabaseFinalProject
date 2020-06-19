@@ -131,6 +131,8 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
         }
 
         creatureFragment.setArguments(bundle);
+        vacationListFragment.setArguments(bundle);
+        toolListFragment.setArguments(bundle);
 
     }
 

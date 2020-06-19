@@ -16,6 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:textSize="30sp"
             android:text="생물종 정보"
             />
@@ -37,6 +38,7 @@
             android:background="@drawable/text_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="6sp"
             />
 
 
@@ -50,6 +52,7 @@
             android:background="@drawable/text_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="6sp"
             />
 
         <TextView
@@ -62,6 +65,7 @@
             android:background="@drawable/text_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="6sp"
             />
 
         <TextView
@@ -74,6 +78,7 @@
             android:background="@drawable/text_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="6sp"
             />
 
 

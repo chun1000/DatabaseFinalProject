@@ -22,38 +22,40 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         //레이아웃들 선언부.
+        ImageView imageView;
+        TextView name;
+        TextView location;
 
         ViewHolder(View item) {
             super(item);
 
-            /*
-            imageView = item.findViewById(R.id.plant_item_imageView_image);
-            name = item.findViewById(R.id.plant_item_textView_name);
-            location = item.findViewById(R.id.plant_item_textView_location);
 
-            */
+            imageView = item.findViewById(R.id.item_imageView_image);
+            name = item.findViewById(R.id.item_textView_name);
+            location = item.findViewById(R.id.item_textView_location);
+
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    /*
+
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
-                        Plant plant = data.get(pos);
+                        Tool tool = data.get(pos);
                         //아이템을 얻는 부분.
 
                         Intent intent = new Intent(v.getContext(), SecondaryDescriptionActivity.class);
-                        intent.putExtra("Model", plant);
-                        v.getContext().startActivity(intent);
+                        intent.putExtra("Model", tool);
+                        //v.getContext().startActivity(intent);
 
 
                     }
-                    */
+
                 }
             });
         }
     }
 
-    ToolAdapter(ArrayList<Tool> list) {
+    public ToolAdapter(ArrayList<Tool> list) {
         data = list;
     }
 
@@ -62,19 +64,19 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        /*
+
         View view = inflater.inflate(R.layout.item, viewGroup, false);
 
-        */
-        ToolAdapter.ViewHolder vh = null; //= new ToolAdapter.ViewHolder(view);
+
+        ToolAdapter.ViewHolder vh = new ToolAdapter.ViewHolder(view);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-       // viewHolder.name.setText(data.get(i).getName());
-       // viewHolder.location.setText(data.get(i).getProvince() + data.get(i).getCity() + data.get(i).getTown());
-        //viewHolder.imageView.setImageURI();
+        viewHolder.name.setText(data.get(i).getToolName());
+        viewHolder.location.setText(data.get(i).getDescription());
+        viewHolder.imageView.setImageResource(R.drawable.net);
     }
 
     @Override
