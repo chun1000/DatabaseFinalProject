@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.techtown.databasefinalproject.Model.Animal;
-import org.techtown.databasefinalproject.Model.Plant;
 import org.techtown.databasefinalproject.R;
 import org.techtown.databasefinalproject.SecondaryDescriptionActivity;
 
@@ -28,9 +27,9 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         ViewHolder(View item) {
             super(item);
 
-            imageView = item.findViewById(R.id.plant_item_imageView_image);
-            name = item.findViewById(R.id.plant_item_textView_name);
-            location = item.findViewById(R.id.plant_item_textView_location);
+            imageView = item.findViewById(R.id.item_imageView_image);
+            name = item.findViewById(R.id.item_textView_name);
+            location = item.findViewById(R.id.item_textView_location);
 
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,7 +58,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
         Context context = viewGroup.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.plant_item, viewGroup, false);
+        View view = inflater.inflate(R.layout.item, viewGroup, false);
         AnimalAdapter.ViewHolder vh = new AnimalAdapter.ViewHolder(view);
 
         return vh;

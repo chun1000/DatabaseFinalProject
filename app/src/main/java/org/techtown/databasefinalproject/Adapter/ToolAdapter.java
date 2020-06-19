@@ -63,7 +63,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
         Context context = viewGroup.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         /*
-        View view = inflater.inflate(R.layout.plant_item, viewGroup, false);
+        View view = inflater.inflate(R.layout.item, viewGroup, false);
 
         */
         ToolAdapter.ViewHolder vh = null; //= new ToolAdapter.ViewHolder(view);

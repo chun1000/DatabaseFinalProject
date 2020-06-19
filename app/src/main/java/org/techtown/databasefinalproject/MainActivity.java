@@ -17,6 +17,15 @@ public class MainActivity extends AppCompatActivity {
         vacation = findViewById(R.id.activity_main_button_vacation);
     }
 
+    private void initializeDatabaseTable() {
+
+    }
+
+    private void initializeDatabaseSet() {
+
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

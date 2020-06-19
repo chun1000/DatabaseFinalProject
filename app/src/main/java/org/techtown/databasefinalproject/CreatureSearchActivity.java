@@ -30,7 +30,10 @@ public class CreatureSearchActivity extends AppCompatActivity {
         btnSearch = findViewById(R.id.activity_creature_search_imageButton_search);
         txtSearch = findViewById(R.id.activity_creature_search_editText_search);
         recyclerView = findViewById(R.id.activity_creature_search_recyclerView_main);
+        executeQuery();
+    }
 
+    private void executeQuery() {
         ArrayList<Plant> plants = new ArrayList<>();
         plants.add(new Plant());
         plants.get(0).setName("나쁜 식물");
