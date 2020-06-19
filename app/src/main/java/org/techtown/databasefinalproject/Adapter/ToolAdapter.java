@@ -1,5 +1,6 @@
 package org.techtown.databasefinalproject.Adapter;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import org.techtown.databasefinalproject.R;
 import org.techtown.databasefinalproject.SecondaryDescriptionActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
     private ArrayList<Tool> data = null;
@@ -44,7 +46,7 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
                         //아이템을 얻는 부분.
 
                         Intent intent = new Intent(v.getContext(), SecondaryDescriptionActivity.class);
-                        intent.putExtra("Model", tool);
+                        intent.putExtra("object", tool);
                         //v.getContext().startActivity(intent);
 
 

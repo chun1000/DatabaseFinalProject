@@ -68,7 +68,31 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.name.setText(data.get(i).getName());
         viewHolder.location.setText(data.get(i).getProvince() + data.get(i).getCity() + data.get(i).getTown());
-        //viewHolder.imageView.setImageURI();
+        setImage(viewHolder.imageView, data.get(i).getSpecies());
+    }
+
+    private void setImage(ImageView imageView, String species) {
+        switch(species){
+            case "무척추동물류(곤충제외)":
+                imageView.setImageResource(R.drawable.inver);
+                break;
+            case "곤충류":
+                imageView.setImageResource(R.drawable.bug);
+                break;
+            case "어류":
+                imageView.setImageResource(R.drawable.fish);
+                break;
+            case "포유류":
+                imageView.setImageResource(R.drawable.mouse);
+                break;
+            case "조류":
+                imageView.setImageResource(R.drawable.bird);
+                break;
+            default:
+                imageView.setImageResource(R.drawable.animal);
+                break;
+        }
+
     }
 
     @Override

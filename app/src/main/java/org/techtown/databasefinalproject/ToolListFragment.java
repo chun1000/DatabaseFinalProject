@@ -97,6 +97,7 @@ public class ToolListFragment extends Fragment {
         ArrayList<Tool> tools = new ArrayList<>();
         tools.add(new Tool());
         tools.get(0).setToolName("이런저런 도구");
+        tools.get(0).setDescription("이런저런 도구에 관한 설명에 관한 설명");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         ToolAdapter adapter = new ToolAdapter(tools);
         recyclerView.setAdapter(adapter);

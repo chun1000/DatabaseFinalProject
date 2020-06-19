@@ -37,8 +37,10 @@ public class CreatureSearchActivity extends AppCompatActivity {
         ArrayList<Plant> plants = new ArrayList<>();
         plants.add(new Plant());
         plants.get(0).setName("나쁜 식물");
+        plants.get(0).setSpecies("관속식물류");
         plants.add(new Plant());
         plants.get(1).setName("나쁜 식물");
+        plants.get(1).setSpecies("균류");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         PlantAdapter adapter = new PlantAdapter(plants);
         recyclerView.setAdapter(adapter);

@@ -46,7 +46,7 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.ViewHo
                         //아이템을 얻는 부분.
 
                         Intent intent = new Intent(v.getContext(), SecondaryDescriptionActivity.class);
-                        intent.putExtra("Model", vacation);
+                        intent.putExtra("object", vacation);
                         v.getContext().startActivity(intent);
 
 

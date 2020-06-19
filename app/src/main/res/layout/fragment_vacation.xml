@@ -5,10 +5,80 @@
     android:layout_height="match_parent"
     tools:context=".VacationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_margin="3sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="휴양지 정보"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3sp"
+            android:background="#000000"
+            android:layout_margin="4sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="휴양자 이름"/>
+
+        <TextView
+            android:id="@+id/fragment_vacation_textView_name"
+            android:background="@drawable/text_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6sp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="전화번호"/>
+
+        <TextView
+            android:id="@+id/fragment_vacation_textView_phone"
+            android:background="@drawable/text_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="지역"/>
+
+        <TextView
+            android:id="@+id/fragment_vacation_textView_location"
+            android:background="@drawable/text_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="상세설명"/>
+
+        <TextView
+            android:id="@+id/fragment_vacation_textView_description"
+            android:background="@drawable/text_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6sp"
+            />
+
+
+    </LinearLayout>
 
 </FrameLayout>
