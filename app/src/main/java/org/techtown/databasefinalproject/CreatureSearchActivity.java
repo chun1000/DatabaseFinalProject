@@ -44,6 +44,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
     }
 
     private void executeQueryPlant() {
+        plants.clear();
         plants.add(new Plant());
         plants.get(0).setName("나쁜 식물");
         plants.get(0).setSpecies("관속식물류");
@@ -58,6 +59,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
     }
 
     private void executeQueryAnimal() {
+        //animals.clear();
         animals.add(new Animal());
         animals.get(0).setName("나쁜 동물");
         animals.get(0).setSpecies("조류");
@@ -88,6 +90,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
                 nonSelectEffectOnBtn(animal);
                 selectEffectOnBtn(plant);
                 isPlant = true;
+                executeQueryPlant();
             }
         });
 
@@ -97,6 +100,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
                 nonSelectEffectOnBtn(plant);
                 selectEffectOnBtn(animal);
                 isPlant = false;
+                executeQueryAnimal();
             }
         });
 
