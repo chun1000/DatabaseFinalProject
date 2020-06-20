@@ -4,6 +4,9 @@ package org.techtown.databasefinalproject;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import org.techtown.databasefinalproject.Model.Query;
 
 public class SqlManager {
     private static SQLiteDatabase database = null;
@@ -11,30 +14,18 @@ public class SqlManager {
     private final String DATABASE_NAME = "MyDatabase.db";
     private Context context;
 
-    private void createDatabase(Context context) {
+    public void createDatabase(Context context) {
         if(database == null) database = context.openOrCreateDatabase(DATABASE_NAME, context.MODE_PRIVATE, null);
     }
 
     public void createTable() {
-        /*
-        This is SampleCode....
         if(database == null) {
             Log.d("SQLiteError", "plz make database first");
             return;
         }
 
-        database.execSQL(
-                "create table if not exists " + CHAT_LIST_TABLE_NAME + "("
-                        + COLUMN1_OPPONENT + " text, "
-                        + COLUMN2_USER_NAME + " text, "
-                        + COLUMN3_LAST_DATE + " text, "
-                        + COLUMN4_LAST_CHAT_CONTENT + " text, "
-                        + COLUMN5_PICTURE + " text, "
-                        + COLUMN6_MY_ID + " text, " +
-                        "PRIMARY KEY(" + COLUMN1_OPPONENT + ", " +  COLUMN6_MY_ID + ")" +
-                        ")"
-        );
-         */
+        database.execSQL(Query.tableCreateQuery);
+
     }
 
 

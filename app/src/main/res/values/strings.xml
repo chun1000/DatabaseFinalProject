@@ -1,6 +1,70 @@
 <resources>
     <string name="app_name">DatabaseFinalProject</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="table_create_query">
+        CREATE TABLE IF NOT EXISTS "Animal" (
+	"animal_name"	TEXT NOT NULL,
+	"species"	TEXT,
+	"description"	TEXT,
+	PRIMARY KEY("animal_name")
+);
+
+CREATE TABLE IF NOT EXISTS  "Plant" (
+	"plant_name"	TEXT NOT NULL,
+	"species"	TEXT,
+	"description"	TEXT,
+	PRIMARY KEY("plant_name")
+);
+
+CREATE TABLE IF NOT EXISTS  "Location" (
+	"location_id"	INTEGER NOT NULL,
+	"province"	TEXT,
+	"town"	TEXT,
+	"city"	TEXT,
+	PRIMARY KEY("location_id")
+);
+
+CREATE TABLE IF NOT EXISTS  "LiveIn" (
+	"animal_name"	TEXT,
+	"location_id"	INTEGER,
+	FOREIGN KEY("animal_name") REFERENCES "Animal"("animal_name"),
+	FOREIGN KEY("location_id") REFERENCES "Location"("location_id"),
+	PRIMARY KEY("location_id","animal_name")
+);
+
+CREATE TABLE IF NOT EXISTS  "GrowthIn" (
+	"plant_name"	TEXT,
+	"location_id"	INTEGER,
+	FOREIGN KEY("plant_name") REFERENCES "Plant"("plant_name"),
+	FOREIGN KEY("location_id") REFERENCES "Location"("location_id"),
+	PRIMARY KEY("plant_name","location_id")
+);
+
+CREATE TABLE IF NOT EXISTS  "Vacation" (
+	"spot_name"	TEXT NOT NULL,
+	"phone_number"	TEXT,
+	"description"	TEXT,
+	"location_id"	INTEGER,
+	PRIMARY KEY("spot_name"),
+	FOREIGN KEY("location_id") REFERENCES "Location"("location_id")
+);
+
+CREATE TABLE IF NOT EXISTS  "Tool" (
+	"tool_name"	TEXT,
+	"description"	TEXT,
+	PRIMARY KEY("tool_name")
+);
+
+CREATE TABLE IF NOT EXISTS  "CatchBy" (
+	"tool_name"	TEXT,
+	"species"	TEXT,
+	FOREIGN KEY("species") REFERENCES "Animal"("species"),
+	FOREIGN KEY("tool_name") REFERENCES "Tool"("tool_name"),
+	PRIMARY KEY("tool_name","species")
+);
+</string>
+
+
 </resources>

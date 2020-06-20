@@ -1,10 +1,13 @@
 package org.techtown.databasefinalproject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import org.techtown.databasefinalproject.Model.Query;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
     private void initializeLayout() {
         creature = findViewById(R.id.activity_main_button_creature);
         vacation = findViewById(R.id.activity_main_button_vacation);
+    }
+
+    private void initializeQuery() {
+        Query.tableCreateQuery = getString(R.string.table_create_query);
     }
 
     private void initializeDatabaseTable() {
@@ -31,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeLayout();
+        initializeQuery();
+
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(getApplicationContext());
+        sqlManager.createTable();
 
         creature.setOnClickListener(new View.OnClickListener() {
             @Override
