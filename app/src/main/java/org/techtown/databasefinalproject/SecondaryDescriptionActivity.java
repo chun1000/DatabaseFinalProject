@@ -20,10 +20,12 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
     ToolListFragment toolListFragment;
     VacationFragment vacationFragment;
     VacationListFragment vacationListFragment;
+    CreatureListFragmentPlant creatureListFragmentPlant;
     Button btnThird;
     Button btnFirst;
     Button btnSecond;
     int layoutMode = -1; //0: 생물 //1:휴양지
+    private Bundle vacationInform = new Bundle();
 
 
     private void initializeLayoutCommon() {
@@ -87,6 +89,8 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, vacationListFragment ).commit();
                 } else {
+                    vacationInform.putBoolean("plant", false);
+                    creatureListFragment.setArguments(vacationInform);
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, creatureListFragment ).commit();
                 }
@@ -105,7 +109,8 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, toolListFragment ).commit();
                 } else {
-
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, creatureListFragmentPlant ).commit();
                 }
 
             }
@@ -119,9 +124,6 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
         toolListFragment = new ToolListFragment();
         vacationListFragment = new VacationListFragment();
 
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, creatureFragment ).commit();
-
         Bundle bundle = new Bundle();
 
         if(o instanceof  Plant) {
@@ -134,16 +136,27 @@ public class SecondaryDescriptionActivity extends AppCompatActivity {
         vacationListFragment.setArguments(bundle);
         toolListFragment.setArguments(bundle);
 
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, creatureFragment ).commit();
+
     }
 
     private void initializeLayoutVacation(Object o) {
         vacationFragment = new VacationFragment();
-        toolListFragment = new ToolListFragment();
         creatureListFragment = new CreatureListFragment();
+        creatureListFragmentPlant = new CreatureListFragmentPlant();
 
-        btnThird.setVisibility(View.INVISIBLE);
+        vacationInform.putSerializable("object", (Vacation)o);
+        vacationFragment.setArguments(vacationInform);
+        creatureListFragmentPlant.setArguments(vacationInform);
+        creatureListFragment.setArguments(vacationInform);
+
+        btnSecond.setText("서식 동물 정보");
+        btnThird.setText("서식 식물 정보");
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_secondary_frameLayout_1, vacationFragment ).commit();
+
+
     }
 
 

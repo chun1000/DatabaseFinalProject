@@ -67,7 +67,7 @@ public class PlantAdapter extends RecyclerView.Adapter<PlantAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.name.setText(data.get(i).getName());
-        viewHolder.location.setText(data.get(i).getProvince() + data.get(i).getCity() + data.get(i).getTown());
+        viewHolder.location.setText(data.get(i).getSpecies());
         setImage(viewHolder.imageView, data.get(i).getSpecies());
     }
 
