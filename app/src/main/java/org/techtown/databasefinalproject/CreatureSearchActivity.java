@@ -59,7 +59,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
     }
 
     private void executeQueryAnimal() {
-        //animals.clear();
+        animals.clear();
         animals.add(new Animal());
         animals.get(0).setName("나쁜 동물");
         animals.get(0).setSpecies("조류");
