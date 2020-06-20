@@ -1,5 +1,6 @@
 package org.techtown.databasefinalproject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -84,26 +85,38 @@ public class VacationListFragment extends Fragment {
         Plant plant; Animal animal;
         if(o instanceof Plant) {
             plant = (Plant) o;
-            executeQueryByPlant(plant);
+            executeQueryByPlant(plant, view.getContext());
         }
         else {
             animal = (Animal) o;
-            executeQueryByAnimal(animal);
+            executeQueryByAnimal(animal, view.getContext());
         }
 
     }
 
-    private void executeQueryByPlant(Plant plant) {
+    private void executeQueryByPlant(Plant plant, Context context) {
         ArrayList<Vacation> vacations = new ArrayList<>();
-        vacations.add(new Vacation());
-        vacations.get(0).setSpotName("이러이러한 휴양지");
+
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(context);
+
+        vacations.addAll(sqlManager.executeQueryForVacation("SELECT * FROM Vacation WHERE location_id IN (SELECT location_id FROM GrowthIn WHERE plant_name=\""+plant.getName()+"\")"));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         VacationAdapter adapter = new VacationAdapter(vacations);
         recyclerView.setAdapter(adapter);
 
     }
 
-    private void executeQueryByAnimal(Animal animal) {
+    private void executeQueryByAnimal(Animal animal, Context context) {
+        ArrayList<Vacation> vacations = new ArrayList<>();
 
+
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(context);
+
+        vacations.addAll(sqlManager.executeQueryForVacation("SELECT * FROM Vacation WHERE location_id IN (SELECT location_id FROM LiveIn WHERE animal_name=\""+animal.getName()+"\")"));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        VacationAdapter adapter = new VacationAdapter(vacations);
+        recyclerView.setAdapter(adapter);
     }
 }

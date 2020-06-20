@@ -59,8 +59,12 @@ public class Plant implements Serializable {
     }
 
     public String getLocation() {
-        return province + " " + city + " " + town;
+        return province + " " + town + " " + city;
     }
 
-
+    public void setLocation(Location location) {
+        this.city = location.getCity();
+        this.town = location.getTown();
+        this.province = location.getProvince();
+    }
 }

@@ -1,5 +1,6 @@
 package org.techtown.databasefinalproject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -84,27 +85,39 @@ public class ToolListFragment extends Fragment {
         Plant plant; Animal animal;
         if(o instanceof Plant) {
             plant = (Plant) o;
-            executeQueryByPlant(plant);
+            executeQueryByPlant(plant, view.getContext());
         }
         else {
             animal = (Animal) o;
-            executeQueryByAnimal(animal);
+            executeQueryByAnimal(animal, view.getContext());
         }
 
     }
 
-    private void executeQueryByPlant(Plant plant) {
+    private void executeQueryByPlant(Plant plant, Context context) {
         ArrayList<Tool> tools = new ArrayList<>();
-        tools.add(new Tool());
-        tools.get(0).setToolName("이런저런 도구");
-        tools.get(0).setDescription("이런저런 도구에 관한 설명에 관한 설명");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(context);
+
+        tools.addAll(sqlManager.executeQueryForTool("SELECT * FROM Tool WHERE tool_name IN (SELECT tool_name FROM CollectBy WHERE species IN (SELECT species FROM Plant WHERE plant_name =\""+plant.getName()+"\"))"));
+
         ToolAdapter adapter = new ToolAdapter(tools);
         recyclerView.setAdapter(adapter);
     }
 
-    private void executeQueryByAnimal(Animal animal) {
+    private void executeQueryByAnimal(Animal animal, Context context) {
+        ArrayList<Tool> tools = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(context);
+
+        tools.addAll(sqlManager.executeQueryForTool("SELECT * FROM Tool WHERE tool_name IN (SELECT tool_name FROM CatchBy WHERE species IN (SELECT species FROM Animal WHERE animal_name = \""+animal.getName()+"\"))"));
+
+        ToolAdapter adapter = new ToolAdapter(tools);
+        recyclerView.setAdapter(adapter);
     }
 
 

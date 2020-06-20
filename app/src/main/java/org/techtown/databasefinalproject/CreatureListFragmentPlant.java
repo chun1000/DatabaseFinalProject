@@ -1,5 +1,6 @@
 package org.techtown.databasefinalproject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -79,14 +80,17 @@ public class CreatureListFragmentPlant extends Fragment {
         Bundle bundle = getArguments();
         Object o = bundle.getSerializable("object");
         Vacation v = (Vacation) o;
-        executeQueryByVacation(v);
+        executeQueryByVacation(v, view.getContext());
     }
 
-    private void executeQueryByVacation(Vacation v) {
+    private void executeQueryByVacation(Vacation v, Context context) {
         ArrayList<Plant> plants = new ArrayList<>();
-        plants.add(new Plant());
-        plants.get(0).setName("나쁜 식물");
-        plants.get(0).setSpecies("나쁜 식물");
+
+
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(context);
+
+        plants.addAll(sqlManager.executeQueryForPlant("SELECT * FROM PLANT WHERE plant_name IN (SELECT plant_name FROM GrowthIN WHERE location_id IN (SELECT location_id FROM Location WHERE province = \""+v.getProvince()+"\" AND town = \""+v.getTown()+"\" AND city = \""+v.getCity()+"\"))"));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         PlantAdapter adapter = new PlantAdapter(plants);
         recyclerView.setAdapter(adapter);

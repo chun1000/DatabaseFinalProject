@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.techtown.databasefinalproject.Model.Location;
 import org.techtown.databasefinalproject.Model.Vacation;
 
 
@@ -75,15 +77,22 @@ public class VacationFragment extends Fragment {
         phone = view.findViewById(R.id.fragment_vacation_textView_phone);
         location = view.findViewById(R.id.fragment_vacation_textView_location);
         description = view.findViewById(R.id.fragment_vacation_textView_description);
+        description.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         Bundle bundle =getArguments();
         Object o = bundle.getSerializable("object");
         Vacation v = (Vacation)o;
 
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(view.getContext());
+        Location location2 = sqlManager.executeQueryForLocation("SELECT * FROM Location WHERE location_id IN (SELECT location_id FROM Vacation WHERE spot_name=\""+v.getSpotName()+"\")").get(0);
+        v.setLocation(location2);
+
         name.setText(v.getSpotName());
         description.setText(v.getDescription());
         location.setText(v.getLocation());
         phone.setText(v.getPhoneNumber());
+
 
     }
 }

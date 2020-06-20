@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.techtown.databasefinalproject.Model.Animal;
+import org.techtown.databasefinalproject.Model.Location;
 import org.techtown.databasefinalproject.Model.Plant;
 
 
@@ -79,6 +81,7 @@ public class CreatureFragment extends Fragment {
         description = view.findViewById(R.id.fragment_creature_textView_description);
         location = view.findViewById(R.id.fragment_creature_textView_location);
         species = view.findViewById(R.id.fragment_creature_textView_species);
+        description.setMovementMethod(ScrollingMovementMethod.getInstance());
 
         Bundle bundle = getArguments();
         Object o = bundle.getSerializable("object");
@@ -88,12 +91,24 @@ public class CreatureFragment extends Fragment {
             plant = (Plant) o;
             name.setText(plant.getName());
             description.setText(plant.getDescription());
-            location.setText(plant.getLocation());
+
             species.setText(plant.getSpecies());
+            SqlManager sqlManager = new SqlManager();
+            sqlManager.createDatabase(view.getContext());
+            Location location2 = sqlManager.executeQueryForLocation("SELECT * FROM Location WHERE location_id IN (SELECT location_id FROM GrowthIn WHERE plant_name = \""+plant.getName()+"\")").get(0);
+            plant.setLocation(location2);
+            location.setText(plant.getLocation());
         }
         else {
             animal = (Animal) o;
-
+            name.setText(animal.getName());
+            description.setText(animal.getDescription());
+            species.setText(animal.getSpecies());
+            SqlManager sqlManager = new SqlManager();
+            sqlManager.createDatabase(view.getContext());
+            Location location2 = sqlManager.executeQueryForLocation("SELECT * FROM Location WHERE location_id IN (SELECT location_id FROM LiveIn WHERE animal_name = \""+animal.getName()+"\")" ).get(0);
+            animal.setLocation(location2);
+            location.setText(animal.getLocation());
         }
     }
 }

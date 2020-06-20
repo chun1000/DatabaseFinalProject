@@ -1,5 +1,6 @@
 package org.techtown.databasefinalproject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -86,16 +87,20 @@ public class CreatureListFragment extends Fragment {
         Bundle bundle = getArguments();
         Object o = bundle.getSerializable("object");
         Vacation v = (Vacation) o;
-        executeQueryByVacation(v);
+        executeQueryByVacation(v, view.getContext());
 
     }
 
-    private void executeQueryByVacation(Vacation v) {
+    private void executeQueryByVacation(Vacation v, Context context) {
 
             ArrayList<Animal> animals = new ArrayList<>();
-            animals.add(new Animal());
-            animals.get(0).setName("나쁜 동물");
-            animals.get(0).setSpecies("나쁜 동물");
+
+            SqlManager sqlManager = new SqlManager();
+            sqlManager.createDatabase(context);
+
+
+            animals.addAll(sqlManager.executeQueryForAnimal("SELECT * FROM Animal WHERE animal_name IN (SELECT animal_name FROM LiveIn WHERE location_id IN (SELECT location_id FROM Location WHERE province = \""+v.getProvince()+"\" AND town = \""+v.getTown()+"\" AND city = \""+v.getCity()+"\"))"));
+            //SELECT * FROM Animal WHERE animal_name IN (SELECT animal_name FROM LiveIn WHERE location_id IN (SELECT location_id FROM Location WHERE province = "강원도" AND town = "강릉시" AND city = "강문동"))
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             AnimalAdapter adapter = new AnimalAdapter(animals);
             recyclerView.setAdapter(adapter);

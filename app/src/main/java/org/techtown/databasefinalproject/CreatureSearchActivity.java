@@ -40,6 +40,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.activity_creature_search_recyclerView_main);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         plantAdapter = new PlantAdapter(plants);
+        animalAdapter = new AnimalAdapter(animals);
 
     }
 
@@ -50,7 +51,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
         plants.clear();
 
         //"SELECT * FROM \"Plant\" WHERE plant_name=\"%개싸리%\""
-        plants.addAll(sqlManager.executeQuery("SELECT * from Plant WHERE plant_name like \"%" + text + "%\"" ));
+        plants.addAll(sqlManager.executeQueryForPlant("SELECT * from Plant WHERE plant_name like \"%" + text + "%\"" ));
         Log.d("plant_test", plants.get(0).getName());
 
 
@@ -60,13 +61,14 @@ public class CreatureSearchActivity extends AppCompatActivity {
     }
 
     private void executeQueryAnimal(String text) {
-        animals.clear();
-        animals.add(new Animal());
-        animals.get(0).setName("나쁜 동물");
-        animals.get(0).setSpecies("조류");
         recyclerView.setAdapter(animalAdapter);
-        animalAdapter = new AnimalAdapter(animals);
-        animalAdapter.notifyDataSetChanged();
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(getApplicationContext());
+        animals.clear();
+
+       animals.addAll(sqlManager.executeQueryForAnimal("SELECT * from Animal WHERE animal_name like \"%" + text + "%\""));
+
+       animalAdapter.notifyDataSetChanged();
     }
 
 

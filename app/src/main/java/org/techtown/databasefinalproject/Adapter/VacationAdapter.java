@@ -76,7 +76,7 @@ public class VacationAdapter extends RecyclerView.Adapter<VacationAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.name.setText(data.get(i).getSpotName());
-        viewHolder.location.setText(data.get(i).getLocation());
+        viewHolder.location.setText(data.get(i).getPhoneNumber());
         viewHolder.imageView.setImageResource(R.drawable.nature);
     }
 
