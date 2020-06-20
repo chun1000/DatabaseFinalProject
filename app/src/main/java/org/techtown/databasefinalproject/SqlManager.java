@@ -3,10 +3,14 @@ package org.techtown.databasefinalproject;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import org.techtown.databasefinalproject.Model.Plant;
 import org.techtown.databasefinalproject.Model.Query;
+
+import java.util.ArrayList;
 
 public class SqlManager {
     private static SQLiteDatabase database = null;
@@ -29,42 +33,25 @@ public class SqlManager {
     }
 
 
+    public ArrayList<Plant> executeQuery(String query) {
+        ArrayList<Plant> plants = new ArrayList<>();
+        Plant plant;
 
-    /*
-
-    public ArrayList<ChatRoomModel> executeQuery() {
-        ArrayList<ChatRoomModel> chatListDataModels = new ArrayList<>();
-        ChatRoomModel chatListDataModel;
-
-        Cursor cursor = database.rawQuery(
-                "select * from " + CHAT_LIST_TABLE_NAME
-                , null
-        );
+        Cursor cursor = database.rawQuery(query, null);
 
         int recordCount = cursor.getCount();
 
         for(int i =0; i < recordCount; i++) {
             cursor.moveToNext();
-            chatListDataModel = new ChatRoomModel();
-            chatListDataModel.opponentId = cursor.getString(0);
-            chatListDataModel.opponentName = cursor.getString(1);
-            chatListDataModel.lastDate = cursor.getString(2);
-            chatListDataModel.lastChat = cursor.getString(3);
-            chatListDataModel.pictureUrl = cursor.getString(4);
-            chatListDataModel.myId = cursor.getString(5);
+            plant = new Plant();
+            plant.setName(cursor.getString(0));
+            plant.setSpecies(cursor.getString(1));
+            plant.setDescription(cursor.getString(2));
 
-            chatListDataModels.add(chatListDataModel);
+            plants.add(plant);
         }
 
-        return chatListDataModels;
+        return plants;
     }
 
-    public void makeDummyChatList(Context context) {
-        ChatListSqlManager chatListSqlManager = new ChatListSqlManager();
-        chatListSqlManager.createDatabase(context);
-        chatListSqlManager.createTable();
-        ChatRoomModel chatRoomModel = new ChatRoomModel();
-        chatListSqlManager.insertRecord(chatRoomModel);
-    }
-    */
 }

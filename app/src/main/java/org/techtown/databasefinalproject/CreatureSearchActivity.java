@@ -40,25 +40,22 @@ public class CreatureSearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         plantAdapter = new PlantAdapter(plants);
         animalAdapter = new AnimalAdapter(animals);
-        executeQueryPlant();
     }
 
-    private void executeQueryPlant() {
+    private void executeQueryPlant(String text) {
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(getApplicationContext());
         plants.clear();
-        plants.add(new Plant());
-        plants.get(0).setName("나쁜 식물");
-        plants.get(0).setSpecies("관속식물류");
-        plants.add(new Plant());
-        plants.get(1).setName("나쁜 식물");
-        plants.get(1).setSpecies("균류");
 
+        //"SELECT * FROM \"Plant\" WHERE plant_name=\"%개싸리%\""
+        plants = sqlManager.executeQuery("SELECT * from Plant WHERE plant_name like \"%" + text + "%\"" );
 
         recyclerView.setAdapter(plantAdapter);
         plantAdapter.notifyDataSetChanged();
 
     }
 
-    private void executeQueryAnimal() {
+    private void executeQueryAnimal(String text) {
         animals.clear();
         animals.add(new Animal());
         animals.get(0).setName("나쁜 동물");
@@ -90,7 +87,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
                 nonSelectEffectOnBtn(animal);
                 selectEffectOnBtn(plant);
                 isPlant = true;
-                executeQueryPlant();
+
             }
         });
 
@@ -100,7 +97,18 @@ public class CreatureSearchActivity extends AppCompatActivity {
                 nonSelectEffectOnBtn(plant);
                 selectEffectOnBtn(animal);
                 isPlant = false;
-                executeQueryAnimal();
+
+            }
+        });
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isPlant) {
+                    executeQueryPlant(txtSearch.getText().toString());
+                } else {
+                    executeQueryAnimal(txtSearch.getText().toString());
+                }
             }
         });
 

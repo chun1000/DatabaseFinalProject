@@ -22,5 +22,10 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("org.techtown.databasefinalproject", appContext.getPackageName());
+        SqlManager sqlManager = new SqlManager();
+        sqlManager.createDatabase(appContext);
+        String testName =  sqlManager.executeQuery("SELECT * from Plant WHERE plant_name like \"%" + "꽃" + "%\"" ).get(0).getName();
+        assertEquals(testName, "개싸리");
+
     }
 }

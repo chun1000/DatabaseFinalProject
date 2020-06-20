@@ -65,6 +65,9 @@ CREATE TABLE IF NOT EXISTS  "CatchBy" (
 	PRIMARY KEY("tool_name","species")
 );
 </string>
+    <string name="search_plant_by_name">
+        SELECT *FROM PLANT WHERE plant_name=
+    </string>
 
 
 </resources>
