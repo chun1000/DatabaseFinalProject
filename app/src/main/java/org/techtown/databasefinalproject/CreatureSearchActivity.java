@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,18 +40,21 @@ public class CreatureSearchActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.activity_creature_search_recyclerView_main);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         plantAdapter = new PlantAdapter(plants);
-        animalAdapter = new AnimalAdapter(animals);
+
     }
 
     private void executeQueryPlant(String text) {
+        recyclerView.setAdapter(plantAdapter);
         SqlManager sqlManager = new SqlManager();
         sqlManager.createDatabase(getApplicationContext());
         plants.clear();
 
         //"SELECT * FROM \"Plant\" WHERE plant_name=\"%개싸리%\""
-        plants = sqlManager.executeQuery("SELECT * from Plant WHERE plant_name like \"%" + text + "%\"" );
+        plants.addAll(sqlManager.executeQuery("SELECT * from Plant WHERE plant_name like \"%" + text + "%\"" ));
+        Log.d("plant_test", plants.get(0).getName());
 
-        recyclerView.setAdapter(plantAdapter);
+
+
         plantAdapter.notifyDataSetChanged();
 
     }
@@ -61,6 +65,7 @@ public class CreatureSearchActivity extends AppCompatActivity {
         animals.get(0).setName("나쁜 동물");
         animals.get(0).setSpecies("조류");
         recyclerView.setAdapter(animalAdapter);
+        animalAdapter = new AnimalAdapter(animals);
         animalAdapter.notifyDataSetChanged();
     }
 
